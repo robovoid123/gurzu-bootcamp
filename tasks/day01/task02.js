@@ -9,6 +9,11 @@ const fs = require("fs");
 const moment = require("moment");
 const { getArticles } = require("./getArticles");
 
+/**
+ *
+ * @param {number} publishedAt
+ * @returns  key for the article_by_week map
+ */
 const getArticleKey = (publishedAt) => {
   // 2022-01-30T14:02:45Z
   const date = new Date(publishedAt);
