@@ -1,0 +1,154 @@
+{
+	"info": {
+		"_postman_id": "244edd34-0f87-4081-af91-df0a9713b2e9",
+		"name": "Gurzu:task03",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Add User",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"user04\",\n    \"email\": \"user04@test.com\",\n    \"password\": \"apple123\",\n    \"address\": \"apple\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/users",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get All Users",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/users",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get User",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/users/8aa11264-61ec-401a-8fdf-68ff023d7a12",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"users",
+						"8aa11264-61ec-401a-8fdf-68ff023d7a12"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update User",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"user03(updated2)\",\n    \"email\": \"user03@test.com\",\n    \"password\": \"apple123\",\n    \"address\": \"apple\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/users/3f37894c-4213-42d8-bd0f-585d72b95dce",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"users",
+						"3f37894c-4213-42d8-bd0f-585d72b95dce"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Remove User",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/users/93ffaa5d-03c3-4851-a384-7e4e1f2c0244",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"users",
+						"93ffaa5d-03c3-4851-a384-7e4e1f2c0244"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "url",
+			"value": "http://localhost:5000",
+			"type": "string"
+		}
+	]
+}

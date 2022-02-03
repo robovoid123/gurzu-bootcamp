@@ -107,4 +107,9 @@ const remove = async (req, res) => {
   }
 };
 
-module.exports = { add, get, update, remove };
+const getAll = async (_, res) => {
+  const db = await User.getAll();
+  return res.json(db);
+};
+
+module.exports = { add, get, update, remove, getAll };

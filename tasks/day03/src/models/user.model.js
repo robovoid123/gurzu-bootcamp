@@ -17,7 +17,7 @@ const getOrCreateUserDB = async () => {
   } catch (error) {
     if (error.code === "ENOENT") {
       await writeFileAsync(FILE_PATH, []);
-      return {};
+      return [];
     } else {
       throw new Error(error);
     }
@@ -37,6 +37,7 @@ const add = async (argv) => {
 const findOne = async (argv) => {
   const db = await getOrCreateUserDB();
 
+  // filter data for which all argv value match
   const data = db.filter((data) => {
     let flag = true;
     Object.keys(argv).forEach((key) => {
@@ -54,6 +55,7 @@ const findOne = async (argv) => {
 const update = async (id, argv) => {
   const db = await getOrCreateUserDB();
 
+  // remove all undefined values from argv
   let filteredArgv = {};
   Object.keys(argv).forEach((key) => {
     if (argv[key]) {
@@ -61,9 +63,11 @@ const update = async (id, argv) => {
     }
   });
 
+  // get the index of data to be modified
   const index = db.findIndex((data) => data.id === id);
-  const updatedUser = { ...db[index], ...filteredArgv };
 
+  // update data
+  const updatedUser = { ...db[index], ...filteredArgv };
   db[index] = updatedUser;
 
   await writeFileAsync(FILE_PATH, db);
@@ -79,11 +83,13 @@ const remove = async (id) => {
   await writeFileAsync(FILE_PATH, newDB);
 };
 
-const read = async (argv) => {};
+const getAll = async (argv) => {
+  return await getOrCreateUserDB();
+};
 
 module.exports = {
   add,
-  read,
+  getAll,
   update,
   remove,
   findOne,
