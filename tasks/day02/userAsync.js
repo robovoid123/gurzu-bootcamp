@@ -29,101 +29,126 @@ const getOrCreateUserDB = async () => {
 };
 
 const readAllUser = async () => {
-  const db = await getOrCreateUserDB();
-  Object.keys(db).forEach((key) => {
-    printUser(db[key]);
-  });
+  try {
+    const db = await getOrCreateUserDB();
+    Object.keys(db).forEach((key) => {
+      printUser(db[key]);
+    });
+  } catch (error) {
+    console.log(error);
+  }
 };
 
 const addUser = async (argv) => {
-  const { name, email, password, address } = argv;
-  const db = await getOrCreateUserDB();
+  try {
+    const { name, email, password, address } = argv;
+    const db = await getOrCreateUserDB();
 
-  const userInDB = db[email];
+    const userInDB = db[email];
 
-  if (userInDB) {
-    console.log(
-      "user with that email already exists please use another email address"
-    );
-    return -1;
+    if (userInDB) {
+      console.log(
+        "user with that email already exists please use another email address"
+      );
+      return -1;
+    }
+
+    console.log("adding user...");
+
+    // const hashedPassword = await hashPasswordAsync(password);
+    const encryptedPassword = encryptPassword(password, password);
+
+    db[email] = { name, email, password: encryptedPassword, address };
+    await writeFileAsync(FILE_PATH, db);
+
+    console.log("user added!!");
+  } catch (error) {
+    console.log(error);
   }
-
-  console.log("adding user...");
-
-  // const hashedPassword = await hashPasswordAsync(password);
-  const encryptedPassword = encryptPassword(password, password);
-
-  db[email] = { name, email, password: encryptedPassword, address };
-  await writeFileAsync(FILE_PATH, db);
-
-  console.log("user added!!");
 };
 
 const readUser = async (argv) => {
-  const { email } = argv;
-  const db = await getOrCreateUserDB();
+  try {
+    const { email } = argv;
+    const db = await getOrCreateUserDB();
 
-  const userInDB = db[email];
+    const userInDB = db[email];
 
-  if (!userInDB) {
-    console.log("no user found");
-    return -1;
+    if (!userInDB) {
+      console.log("no user found");
+      return -1;
+    }
+
+    const { name, address } = userInDB;
+    printUser({ name, email, address });
+
+    return userInDB;
+  } catch (error) {
+    console.log(error);
   }
-
-  const { name, address } = userInDB;
-  printUser({ name, email, address });
-
-  return userInDB;
 };
 
 const deleteUser = async (argv) => {
-  const { email } = argv;
-  const db = await getOrCreateUserDB();
+  try {
+    const { email } = argv;
+    const db = await getOrCreateUserDB();
 
-  const userInDB = db[email];
+    const userInDB = db[email];
 
-  if (!userInDB) {
-    console.log("no user found");
-    return -1;
+    if (!userInDB) {
+      console.log("no user found");
+      return -1;
+    }
+
+    const { [email]: _, ...other } = db;
+
+    await writeFileAsync(FILE_PATH, other);
+
+    console.log("user deleted");
+  } catch (error) {
+    console.log(error);
   }
-
-  const { [email]: _, ...other } = db;
-
-  await writeFileAsync(FILE_PATH, other);
-
-  console.log("user deleted");
 };
 
 const updateUser = async (argv) => {
-  const { name, email, newEmail, password, address } = argv;
-  const db = await getOrCreateUserDB();
+  try {
+    const { name, email, newEmail, password, address } = argv;
+    const db = await getOrCreateUserDB();
 
-  const userInDB = db[email];
+    const userInDB = db[email];
 
-  if (!userInDB) {
-    console.log("no user found");
-    return -1;
-  }
-
-  if (userInDB[newEmail]) {
-    console.log(
-      "user with that email already exists please use another email address"
-    );
-    return -1;
-  }
-
-  console.log("updating user...");
-  updatedData = { name, password, email: newEmail, address };
-  for (key of Object.keys(updatedData)) {
-    if (updatedData[key]) {
-      userInDB[key] = updatedData[key];
+    if (!userInDB) {
+      console.log("no user found");
+      return -1;
     }
+
+    if (userInDB[newEmail]) {
+      console.log(
+        "user with that email already exists please use another email address"
+      );
+      return -1;
+    }
+
+    let newPassword = password;
+    if (newPassword) {
+      newPassword = encryptPassword(password, password);
+    }
+
+    console.log("updating user...");
+    updatedData = { name, password: newPassword, email: newEmail, address };
+    for (key of Object.keys(updatedData)) {
+      if (updatedData[key]) {
+        userInDB[key] = updatedData[key];
+      }
+    }
+
+    db[email] = userInDB;
+
+    await writeFileAsync(FILE_PATH, db);
+    console.log("user updated!!");
+  } catch (error) {
+    console.log(error);
   }
-
-  db[email] = userInDB;
-
-  await writeFileAsync(FILE_PATH, db);
-  console.log("user updated!!");
 };
 
 module.exports = { addUser, readUser, readAllUser, deleteUser, updateUser };
