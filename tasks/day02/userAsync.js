@@ -135,7 +135,12 @@ const updateUser = async (argv) => {
     }
 
     console.log("updating user...");
-    updatedData = { name, password: newPassword, email: newEmail, address };
+    const updatedData = {
+      name,
+      password: newPassword,
+      email: newEmail,
+      address,
+    };
     for (key of Object.keys(updatedData)) {
       if (updatedData[key]) {
         userInDB[key] = updatedData[key];

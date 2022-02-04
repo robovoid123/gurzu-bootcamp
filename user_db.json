@@ -1,8 +1,37 @@
-{
-  "user2@example.com": {
-    "name": "user2",
-    "email": "user2@example.com",
-    "password": "U2FsdGVkX1/klPlRFXc5vwKz34HX2Rcv773sw8Nqdwc=",
-    "address": "dog123"
+[
+  {
+    "id": "aca44cea-8631-4518-8989-550c72f8c4cc",
+    "name": "user01",
+    "email": "user01@test.com",
+    "password": "$2b$10$qGZku7Z8hjZtLFrHjxqPLOFFJfEQKRpD1ciW/0hlqpS8lhlD4oWmC",
+    "address": "apple"
+  },
+  {
+    "id": "b2125ba6-8a2e-4f6c-8a70-bb1645a67dab",
+    "name": "user02",
+    "email": "user02@test.com",
+    "password": "$2b$10$YQCXkkAzJ6qpIvLNft2pouS/QVSW2NieXDTAz8bcDR21ER0H4FlHi",
+    "address": "apple"
+  },
+  {
+    "id": "3f37894c-4213-42d8-bd0f-585d72b95dce",
+    "name": "user03(updated2)",
+    "email": "user03up@test.com",
+    "password": "$2b$10$UMUad/pmAvRZDCJm2N0LpunADzTTuUfjOJX/VsjExLgiObD6qpAMG",
+    "address": "apple"
+  },
+  {
+    "id": "8aa11264-61ec-401a-8fdf-68ff023d7a12",
+    "name": "user04",
+    "email": "user04@test.com",
+    "password": "$2b$10$qVSX5DVl4AEfINpXatYLYe1r3Nay7yQUBZvMjp7dZbdxqc/w.rwx2",
+    "address": "apple"
+  },
+  {
+    "id": "38130518-39c1-4185-a71d-611e2a4ba301",
+    "name": "user05(updated1)",
+    "email": "user05upup@test.com",
+    "password": "$2b$10$pxnM6R0j5REJhGmC6Le8r.c8UJRTficuFI5XKUtYV6uoDI6Bm803C",
+    "address": "apple"
   }
-}
+]
