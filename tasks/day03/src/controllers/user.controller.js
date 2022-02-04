@@ -7,7 +7,7 @@ const add = async (req, res) => {
     const userInDB = await User.findOne({ email });
 
     if (userInDB) {
-      return res.status(400).json({
+      return res.status(409).json({
         msg: "user with that email already exists please use another email address",
       });
     }
@@ -64,7 +64,7 @@ const update = async (req, res) => {
     }
 
     if (email && (await User.findOne({ email }))) {
-      return res.status(401).json({
+      return res.status(409).json({
         msg: "user with that email already exists please use another email address",
       });
     }
