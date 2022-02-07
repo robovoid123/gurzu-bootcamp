@@ -12,6 +12,7 @@ const printUser = ({ name, email, address }) => {
   `);
 };
 
+console.log("test")
 /**
  * @brief gets the user array from file if found else creates a new file
  * @returns array of user in the JSON file
