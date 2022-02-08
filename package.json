@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start:task03": "nodemon ./tasks/day03/src/app.js"
+    "start:task03": "nodemon ./tasks/day03/src/app.js",
+    "start:task05": "nodemon ./tasks/day05/src/app.js"
   },
   "keywords": [],
   "author": "",
@@ -16,7 +17,9 @@
     "dotenv": "^15.0.0",
     "express": "^4.17.2",
     "express-validator": "^6.14.0",
+    "knex": "^1.0.2",
     "moment": "^2.29.1",
+    "mysql2": "^2.3.3",
     "prompt": "^1.2.1",
     "uuid": "^8.3.2",
     "yargs": "^17.3.1"
