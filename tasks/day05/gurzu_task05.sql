@@ -56,5 +56,4 @@ insert into user_task (user_id, task_id) values
 
 select name, email, address, title as task_title, detail as task_detail
 from tasks left outer join user_task on tasks.id = user_task.task_id 
-left outer join users on user_task.user_id = users.id 
-left outer join user_details on users.id = user_details.user_id;
+left outer join users on user_task.user_id = users.id;

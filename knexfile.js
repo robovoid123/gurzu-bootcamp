@@ -1,7 +1,5 @@
 const path = require("path");
-
 // Update with your config settings.
-const _ = require("dotenv").config();
 /**
  * @type { Object.<string, import("knex").Knex.Config> }
  */
@@ -20,7 +18,7 @@ module.exports = {
     },
     migrations: {
       tableName: "migrations",
-      directory: path.join(__dirname, "tasks", "day05", "migrations"),
+      directory: path.join(__dirname, "migrations"),
     },
   },
 
